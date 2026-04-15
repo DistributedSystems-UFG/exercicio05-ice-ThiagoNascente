@@ -1,11 +1,13 @@
+
 import sys, Ice
+
+Ice.loadSlice(['-I.', 'Printer.ice'])
 import Demo
- 
-communicator = Ice.initialize(sys.argv) as communicator
 
-base = communicator.stringToProxy("SimplePrinter:default -p 11000")
-printer = Demo.PrinterPrx.checkedCast(base)
-if not printer:
-    raise RuntimeError("Invalid proxy")
+with Ice.initialize(sys.argv) as communicator:
+    base = communicator.stringToProxy("SimplePrinter:default -p 11000")
+    printer = Demo.PrinterPrx.checkedCast(base)
+    if not printer:
+        raise RuntimeError("Invalid proxy")
 
-printer.printString("Hello World!")
+    print(printer.printString("Hello World! Comunicacao feita com sucesso!!!"))

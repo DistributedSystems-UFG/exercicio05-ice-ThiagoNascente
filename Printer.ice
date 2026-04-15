@@ -2,6 +2,10 @@ module Demo
 {
     interface Printer
     {
-        void printString(string s);
+        string printString(string s);
+    }
+    interface Reader
+    {
+        string readString(string name);
     }
 }
