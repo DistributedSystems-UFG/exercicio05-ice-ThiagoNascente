@@ -8,27 +8,46 @@ precisa-se das portas 5678 e 5679
 
 ## Instalando zeroc-ice
 
-```bash
-pip install zeroc-ice
-```
-
-## Ambiente Virtual
+Em ambos os bash, executar:
 
 ```bash
-python -m venv venv
+sudo chown ubuntu:ubuntu /mnt/efs/fs1
 ```
 
 ```bash
-.\venv\Scripts\activate
-```
-ou 
-
-```bash
-.\venv\bin\activate
+sudo apt update
 ```
 
 ```bash
-pip install zeroc-ice
+sudo apt install python3
+```
+
+```bash
+sudo apt install python3-venv
+```
+
+```bash
+sudo apt install python3-pip
+```
+
+```bash
+sudo apt install python3-zeroc-ice
+```
+
+```bash
+sudo apt install python3-zeroc-ice zeroc-ice-compilers
+```
+
+```bash
+sudo apt install python-is-python3
+```
+
+```bash
+cd /mnt/efs/fs1/exercicio05-ice-ThiagoNascente/
+```
+
+```bash
+slice2py Functions.ice
 ```
 
 ## Executando
@@ -57,3 +76,6 @@ py server2.py
 py client2.py
 ```
 
+## Observações
+
+todo adapter tá com o ip da minha máquina que foi servidor, há comentado o host para localhost, para testes, porém requer também um tratamento no início do arquivo servants.py (explicado no código).
