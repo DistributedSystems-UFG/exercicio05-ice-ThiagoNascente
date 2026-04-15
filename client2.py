@@ -1,6 +1,6 @@
 import sys, Ice
 
-Ice.loadSlice(['-I.', 'Printer.ice'])
+Ice.loadSlice(['-I.', 'Functions.ice'])
 import Demo
  
 with Ice.initialize(sys.argv) as communicator:
