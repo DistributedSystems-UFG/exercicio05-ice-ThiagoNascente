@@ -3,7 +3,7 @@ from servants import FunctionsI
         
 with Ice.initialize(sys.argv) as communicator:
 
-    adapter = communicator.createObjectAdapterWithEndpoints("SimpleAdapter", "default -p 5678")
+    adapter = communicator.createObjectAdapterWithEndpoints("SimpleAdapter", "default -h 0.0.0.0 -p 5678")
     object = FunctionsI('objeto')
     adapter.add(object, Ice.stringToIdentity("SimpleFunctions"))
 

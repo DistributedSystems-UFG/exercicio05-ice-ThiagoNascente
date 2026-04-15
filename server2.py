@@ -4,7 +4,7 @@ from servants import FunctionsI
     
 with Ice.initialize(sys.argv) as communicator:
 
-    adapter = communicator.createObjectAdapterWithEndpoints("SimpleAdapter", "default -p 5679")
+    adapter = communicator.createObjectAdapterWithEndpoints("SimpleAdapter", "default -h 0.0.0.0 -p 5679")
     object1 = FunctionsI("Object1")
     object2 = FunctionsI("Object2")
     adapter.add(object1, Ice.stringToIdentity("SimpleFunctions1"))
