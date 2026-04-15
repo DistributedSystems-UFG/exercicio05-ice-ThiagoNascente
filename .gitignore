@@ -1,0 +1,11 @@
+# Ignora o Ambiente Virtual (Arquivos pesados e locais)
+venv/
+
+# Ignora os códigos gerados automaticamente pelo ZeroC Ice
+Demo/
+*_ice.py
+
+# (Bônus) Ignora arquivos temporários padrão do Python e vscode
+__pycache__/
+*.pyc
+.vscode/

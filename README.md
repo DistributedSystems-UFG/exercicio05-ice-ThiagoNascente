@@ -8,6 +8,27 @@ Executei o seguinte bash, e deu certo!
 pip install zeroc-ice
 ```
 
+## Ambiente Virtual
+
+```bash
+python -m venv venv
+```
+
+```bash
+.\venv\Scripts\activate
+```
+ou 
+
+```bash
+.\venv\bin\activate
+```
+
+
+
+```bash
+pip install zeroc-ice
+```
+
 ## Executando
 
 - No primeiro Bash
