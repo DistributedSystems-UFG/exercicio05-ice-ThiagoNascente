@@ -2,6 +2,10 @@
 
 Executei o seguinte bash, e deu certo!
 
+## Portas necessarias
+
+precisa-se das portas 5678 e 5679
+
 ## Instalando zeroc-ice
 
 ```bash
@@ -22,8 +26,6 @@ ou
 ```bash
 .\venv\bin\activate
 ```
-
-
 
 ```bash
 pip install zeroc-ice

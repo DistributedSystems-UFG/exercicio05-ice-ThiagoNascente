@@ -4,15 +4,27 @@ Ice.loadSlice(['-I.', 'Functions.ice'])
 import Demo
  
 with Ice.initialize(sys.argv) as communicator:
-
-    base1 = communicator.stringToProxy("SimplePrinter1:tcp -h localhost -p 11000")
-    base2 = communicator.stringToProxy("SimplePrinter2:tcp -h localhost -p 11000")
-    printer1 = Demo.PrinterPrx.checkedCast(base1)
-    printer2 = Demo.PrinterPrx.checkedCast(base2)
-    if (not printer1) or (not printer2):
+    host = 'localhost' #para localhost
+    #host = '' #<ip_da_maquina_servidor>
+    base1 = communicator.stringToProxy(f"SimpleFunctions1:tcp -h {host} -p 5679")
+    base2 = communicator.stringToProxy(f"SimpleFunctions2:tcp -h {host} -p 5679")
+    obj1 = Demo.FunctionsPrx.checkedCast(base1)
+    obj2 = Demo.FunctionsPrx.checkedCast(base2)
+    if (not obj1) or (not obj2):
         raise RuntimeError("Invalid proxy")
 
-    print(printer1.printString("Hello World from printer1!"))
-    print(printer2.printString("Hello World from printer2!"))
+    print(obj1.printString("Hello World from object1!"))
+    texto = input('Entre com um texto: ')
+    print(obj1.palindromo(texto))
+    numero = input('Entre com um numero (numero de lados do seu dado): ')
+    print(obj1.rolarDado(numero))
+    
+    print('---------------------------------')
+    
+    print(obj2.printString("Hello World from object2!"))
+    texto = input('Entre com um texto: ')
+    print(obj2.palindromo(texto))
+    numero = input('Entre com um numero (numero de lados do seu dado): ')
+    print(obj2.rolarDado(numero))
 
     #communicator.waitForShutdown() #Isso acontece so em arquivos do tipo servidor

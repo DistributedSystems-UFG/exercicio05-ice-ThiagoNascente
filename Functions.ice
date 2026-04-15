@@ -1,11 +1,11 @@
 module Demo
 {
-    interface Printer
+    interface Functions
     {
         string printString(string s);
-    }
-    interface Reader
-    {
-        string readString(string name);
+        string cumprimentar(string nome);
+        string inverter(string texto);
+        string palindromo(string texto);
+        string rolarDado(string numero);
     }
 }
