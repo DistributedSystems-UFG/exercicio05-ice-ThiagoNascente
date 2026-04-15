@@ -112,4 +112,9 @@ py client2.py
 
 ## Observações
 
+<<<<<<< HEAD
 O código está preparado para executar primeiro remotamente, e quando falha tenta local, falhando novamente ele finaliza dizendo nao ter encontrado o servidor, ou servidor não está atendendo por aquilo (o processo servidor esperado não existe, ou porta liberada).
+=======
+- todo adapter tá com o ip da minha máquina servidor do aws, há comentado o host para localhost, para testes localmente, porém requer também um tratamento no início do arquivo servants.py (explicado no código).
+- Além disso, a requeriments só vai funcionar localmente, e utilizando ambiente virtual.
+>>>>>>> 8b4b1d49f13ae39fe989f2078d6c9a71f356543e
