@@ -1,6 +1,7 @@
 import sys, Ice, random
 
-Ice.loadSlice(['-I.', 'Functions.ice'])
+#Ice.loadSlice(['-I.', 'Functions.ice']) #my pc
+Ice.loadSlice(['-I. Functions.ice']) #on aws
 import Demo
  
 class FunctionsI(Demo.Functions):
