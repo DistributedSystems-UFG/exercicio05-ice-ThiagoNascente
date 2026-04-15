@@ -4,8 +4,8 @@ import Demo
 #from servants import FunctionsI
 
 with Ice.initialize(sys.argv) as communicator:
-    host = 'localhost' #para localhost
-    #host = '<ip_da_maquina_servidor>' #para aws
+    #host = 'localhost' #para localhost
+    host = '172.31.37.241' #<ip_da_maquina_servidor>
     base = communicator.stringToProxy(f"SimpleFunctions:tcp -h {host} -p 5678")
     obj = Demo.FunctionsPrx.checkedCast(base)
     if not obj:

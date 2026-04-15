@@ -4,8 +4,8 @@ Ice.loadSlice(['-I.', 'Functions.ice'])
 import Demo
  
 with Ice.initialize(sys.argv) as communicator:
-    host = 'localhost' #para localhost
-    #host = '' #<ip_da_maquina_servidor>
+    #host = 'localhost' #para localhost
+    host = '172.31.37.241' #<ip_da_maquina_servidor>
     base1 = communicator.stringToProxy(f"SimpleFunctions1:tcp -h {host} -p 5679")
     base2 = communicator.stringToProxy(f"SimpleFunctions2:tcp -h {host} -p 5679")
     obj1 = Demo.FunctionsPrx.checkedCast(base1)
