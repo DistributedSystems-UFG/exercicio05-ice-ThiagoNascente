@@ -6,7 +6,7 @@ Executei o seguinte bash, e deu certo!
 
 precisa-se das portas 5678 e 5679
 
-## Instalando zeroc-ice
+## Instalando zeroc-ice (aws)
 
 Em ambos os bash, executar:
 
@@ -50,7 +50,41 @@ cd /mnt/efs/fs1/exercicio05-ice-ThiagoNascente/
 slice2py Functions.ice
 ```
 
+## Instalando zeroc-ice (local)
+
+```bash
+py -m venv venv
+```
+> Pra ti pode ser python, python3 ou py
+
+```bash
+pip install -r requirements.txt
+```
+
+```bash
+./venv/bin/activate
+```
+ou
+```bash
+./venv/Scripts/activate
+```
+ou
+```bash
+source venv/bin/activate
+```
+ou
+```bash
+source venv/Scripts/activate
+```
+Para sair
+```bash
+deactivate
+```
+
 ## Executando
+
+[localmente -> todos os terminais devem estar na venv]
+[Aws -> particularmente, não consegui usar venv lá]
 
 - No primeiro Bash
 
@@ -78,4 +112,4 @@ py client2.py
 
 ## Observações
 
-todo adapter tá com o ip da minha máquina que foi servidor, há comentado o host para localhost, para testes, porém requer também um tratamento no início do arquivo servants.py (explicado no código).
+O código está preparado para executar primeiro remotamente, e quando falha tenta local, falhando novamente ele finaliza dizendo nao ter encontrado o servidor, ou servidor não está atendendo por aquilo (o processo servidor esperado não existe, ou porta liberada).

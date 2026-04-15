@@ -1,28 +1,57 @@
 import sys, Ice
 import Demo
- 
-with Ice.initialize(sys.argv) as communicator:
-    #host = 'localhost' #para localhost
-    host = '172.31.37.241' #<ip_da_maquina_servidor>
-    base1 = communicator.stringToProxy(f"SimpleFunctions1:tcp -h {host} -p 5679")
-    base2 = communicator.stringToProxy(f"SimpleFunctions2:tcp -h {host} -p 5679")
-    obj1 = Demo.FunctionsPrx.checkedCast(base1)
-    obj2 = Demo.FunctionsPrx.checkedCast(base2)
-    if (not obj1) or (not obj2):
-        raise RuntimeError("Invalid proxy")
 
-    print(obj1.printString("Hello World from object1!"))
-    texto = input('Entre com um texto: ')
-    print(obj1.palindromo(texto))
-    numero = input('Entre com um numero (numero de lados do seu dado): ')
-    print(obj1.rolarDado(numero))
-    
-    print('---------------------------------')
-    
-    print(obj2.printString("Hello World from object2!"))
-    texto = input('Entre com um texto: ')
-    print(obj2.palindromo(texto))
-    numero = input('Entre com um numero (numero de lados do seu dado): ')
-    print(obj2.rolarDado(numero))
 
-    #communicator.waitForShutdown() #Isso acontece so em arquivos do tipo servidor
+def iniciar_cliente():
+    host_remoto = '172.31.37.241'
+    host_local = 'localhost'
+    porta = '5679'
+    
+    try:
+        with Ice.initialize(sys.argv) as communicator:
+            obj1 = None
+            obj2 = None
+            try:
+                # tentar no servidor Remoto
+                print(f"Tentando conectar em {host_remoto}...")
+                base1 = communicator.stringToProxy(f"SimpleFunctions1:tcp -h {host_remoto} -p {porta}")
+                base2 = communicator.stringToProxy(f"SimpleFunctions2:tcp -h {host_remoto} -p {porta}")
+                obj1 = Demo.FunctionsPrx.checkedCast(base1)
+                obj2 = Demo.FunctionsPrx.checkedCast(base2)
+                
+            except (Ice.ConnectTimeoutException, Ice.ConnectionRefusedException):
+                # tentar no servidor local
+                try:
+                    print("Servidor remoto offline. Tentando localhost...")
+                    base1 = communicator.stringToProxy(f"SimpleFunctions1:tcp -h {host_local} -p {porta}")
+                    base2 = communicator.stringToProxy(f"SimpleFunctions2:tcp -h {host_local} -p {porta}")
+                    obj1 = Demo.FunctionsPrx.checkedCast(base1)
+                    obj2 = Demo.FunctionsPrx.checkedCast(base2)
+                except Ice.ConnectionRefusedException:
+                    print("Erro: Nem o servidor remoto nem o local estão ativos.")
+                    return
+
+            if obj1 and obj2:
+                executar_logica(obj1)
+                print('--------------------------')
+                executar_logica(obj2)
+            else:
+                print("Não foi possível estabelecer conexão com nenhum servidor.")
+    except Ice.Exception as e:
+        print(f"Erro inesperado no Ice: {e}")
+    except Exception as e:
+        print(f"Erro crítico no sistema: {e}")
+        
+def executar_logica(obj):
+    print(obj.printString("Hello World!"))
+    texto = input('Entre com um texto: ')
+    print(obj.palindromo(texto))
+    numero = input('Entre com um numero (numero de lados do seu dado): ')
+    print(obj.rolarDado(numero))
+
+if __name__ == "__main__":
+    try:
+        iniciar_cliente()
+    except KeyboardInterrupt:
+        print("\nSessão client2.py encerrada pelo usuario.")
+        sys.exit(0)
