@@ -1,4 +1,3 @@
-
 import sys, Ice
 import Demo
 #from servants import FunctionsI
