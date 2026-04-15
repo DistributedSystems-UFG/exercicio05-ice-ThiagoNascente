@@ -78,4 +78,5 @@ py client2.py
 
 ## Observações
 
-todo adapter tá com o ip da minha máquina que foi servidor, há comentado o host para localhost, para testes, porém requer também um tratamento no início do arquivo servants.py (explicado no código).
+- todo adapter tá com o ip da minha máquina servidor do aws, há comentado o host para localhost, para testes localmente, porém requer também um tratamento no início do arquivo servants.py (explicado no código).
+- Além disso, a requeriments só vai funcionar localmente, e utilizando ambiente virtual.
