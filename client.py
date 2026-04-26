@@ -3,7 +3,7 @@ import Ice
 import Demo
 
 def iniciar_cliente():
-    host_remoto = '172.31.37.241'
+    host_remoto = '54.196.85.80'
     host_local = 'localhost'
     porta = '5678'
     
